@@ -1,38 +1,75 @@
 import { auth } from "./firebase.js";
 
 import {
-  signInWithEmailAndPassword
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
+const loginForm = document.getElementById("loginForm");
 
-    e.preventDefault();
+if (loginForm) {
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    loginForm.addEventListener("submit", async (e) => {
 
-    try {
+        e.preventDefault();
 
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
 
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem(
-            "mediguideUser",
-            JSON.stringify({
-                name: user.email,
-                email: user.email
-            })
-        );
+        emailError.style.display = "none";
+        passwordError.style.display = "none";
 
-        alert("Login Successful");
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-        window.location.href = "index.html";
+        try {
 
-    } catch (error) {
+            const userCredential =
+                await signInWithEmailAndPassword(auth, email, password);
 
-        alert(error.message);
+            const user = userCredential.user;
 
-    }
+            localStorage.setItem("loggedIn", "true");
 
-});
+            localStorage.setItem(
+                "mediguideUser",
+                JSON.stringify({
+                    name: user.email,
+                    email: user.email
+                })
+            );
+
+            window.location.href = "index.html";
+
+        } catch (error) {
+
+            switch(error.code){
+
+                case "auth/invalid-email":
+                    emailError.style.display = "block";
+                    emailError.textContent = "Please enter a valid email.";
+                    break;
+
+                case "auth/user-not-found":
+                    emailError.style.display = "block";
+                    emailError.textContent = "No account found.";
+                    break;
+
+                case "auth/wrong-password":
+                    passwordError.style.display = "block";
+                    passwordError.textContent = "Incorrect password.";
+                    break;
+
+                case "auth/invalid-credential":
+                    passwordError.style.display = "block";
+                    passwordError.textContent = "Invalid email or password.";
+                    break;
+
+                default:
+                    passwordError.style.display = "block";
+                    passwordError.textContent = "Login failed.";
+            }
+        }
+
+    });
+
+}

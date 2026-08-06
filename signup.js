@@ -13,7 +13,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     const confirm = document.getElementById("confirmPassword").value;
 
     if (password !== confirm) {
-        alert("Passwords do not match");
+        showSuggestions();
         return;
     }
 
@@ -30,13 +30,13 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
             })
         );
 
-        alert("Account Created Successfully");
+        showSuggestions();
 
         window.location.href = "login.html";
 
     } catch (error) {
 
-        alert(error.message);
+        showSuggestions();
 
     }
 

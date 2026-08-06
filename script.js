@@ -121,6 +121,8 @@ displayHospitals(hospitals);
     console.log("✅ Firebase Initialization Completed");
 
 }
+ 
+displayHospitals(hospitals);
 
 initializeApp();
 
@@ -205,7 +207,7 @@ function searchSymptom(){
 
     if(keyword===""){
 
-        alert("Please enter a symptom.");
+        showSuggestions();
 
         return;
 
@@ -215,7 +217,7 @@ function searchSymptom(){
 
     if(!symptom){
 
-        alert("Symptom not found.");
+        showSuggestions();
 
         return;
 
@@ -667,6 +669,35 @@ if (cityFilter) {
         }
 
         displayHospitals(filtered);
+
+    });
+
+}
+// ====================
+// PROFILE MENU
+// ====================
+
+const profileBtn = document.getElementById("profileBtn");
+const profileMenu = document.getElementById("profileMenu");
+
+console.log(profileBtn);
+console.log(profileMenu);
+
+if (profileBtn && profileMenu) {
+
+    profileBtn.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        console.log("Clicked");
+
+        profileMenu.classList.toggle("show");
+
+    });
+
+    document.addEventListener("click", function () {
+
+        profileMenu.classList.remove("show");
 
     });
 

@@ -20,21 +20,134 @@
      USER HEADER
 ========================== -->
 
-<header class="user-header">
+<!-- =========================
+     TOP NAVIGATION
+========================== -->
 
-    <div class="welcome-section">
+<header class="topbar">
 
-        <h2 id="welcomeUser">
-            Welcome
-        </h2>
+    <!-- Logo -->
+    <div class="brand-container">
+
+        <div class="logo-mark">
+            M
+        </div>
+
+        <div>
+
+            <h2 class="brand-name">
+                MediGuide
+            </h2>
+
+            <p class="brand-tagline">
+                Healthcare Navigation System
+            </p>
+
+        </div>
 
     </div>
 
-    <button id="logoutBtn">
+    <!-- Search -->
+    <div class="search-panel">
 
-        Logout
+        <div class="search-field">
 
-    </button>
+            <input
+                id="searchInputSection"
+                type="search"
+                placeholder="Search symptoms (Back Pain, Fever, Knee Pain...)"
+                autocomplete="off">
+
+            <button
+                id="searchButtonSection"
+                class="primary-btn">
+
+                🔍 Search
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+    <div class="topbar-right">
+
+        <!-- Theme -->
+        <button
+            id="themeBtn"
+            class="mode-toggle">
+
+            🌙
+
+        </button>
+
+        <!-- Profile -->
+        <div class="profile-dropdown">
+
+            <button
+                id="profileBtn"
+                class="profile-btn">
+
+                <span id="profileInitial">U</span>
+
+            </button>
+
+            <div
+                id="profileMenu"
+                class="profile-menu">
+
+                <div class="profile-header">
+
+                    <strong id="welcomeUser">
+                        Welcome
+                    </strong>
+
+                    <small id="userEmail">
+                        user@email.com
+                    </small>
+
+                </div>
+
+                <hr>
+
+                <a href="#">
+                    👤 General
+                </a>
+
+                <a href="#">
+                    🧑 Profile
+                </a>
+
+                <a href="#">
+                    🔒 Privacy
+                </a>
+
+                <a href="#searchHistory">
+                    🕒 History
+                </a>
+
+                <a href="#">
+                    🔔 Notifications
+                </a>
+
+                <a href="#">
+                    ❓ Help & Feedback
+                </a>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-menu-btn">
+
+                    🚪 Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </header>
 
@@ -51,87 +164,6 @@ id="loaderOverlay">
     <p>Loading hospital directory...</p>
 
 </div>
-
-<!-- =========================
-     TOP HEADER
-========================== -->
-
-<header class="topbar">
-
-    <div class="brand-container">
-
-        <div class="logo-mark">
-            M
-        </div>
-
-        <div>
-
-            <p class="brand-name">
-                MediGuide
-            </p>
-
-            <p class="brand-tagline">
-                Healthcare navigation made simple
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="search-panel">
-
-        <div class="search-field">
-
-            <input
-                id="searchInputSection"
-                type="search"
-                placeholder="Search symptom (Back Pain, Fever, Knee Pain...)"
-                autocomplete="off">
-
-            <button
-                id="searchButtonSection"
-                class="primary-btn">
-
-                🔍 Search
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <button
-        id="themeBtn"
-        class="mode-toggle">
-
-        🌙
-
-    </button>
-
-    <div class="theme-container">
-
-        <div
-            id="themeMenu"
-            class="theme-menu">
-
-            <button onclick="setTheme('light')">
-                ☀️ Light
-            </button>
-
-            <button onclick="setTheme('dark')">
-                🌙 Dark
-            </button>
-
-            <button onclick="setTheme('system')">
-                💻 Default
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
 <main>
 <section class="results-section" id="results-section">
 
