@@ -186,7 +186,7 @@ screenshots/login.png
 
 [Open MediGuide](https://mediguide-44a3.onrender.com)
 
-GitHub Repository
+##GitHub Repository
 
 ```
 https://github.com/balagopal-reddi/mediguide
