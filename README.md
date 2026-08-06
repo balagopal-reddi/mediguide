@@ -184,9 +184,7 @@ screenshots/login.png
 
 **Render**
 
-```
-https://mediguide-44a3.onrender.com
-```
+[Open MediGuide](https://mediguide-44a3.onrender.com)
 
 GitHub Repository
 
