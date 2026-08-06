@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediGuide | Find Your Doctor & Nearby Hospitals</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+     USER HEADER
+========================== -->
+
+<header class="user-header">
+
+    <div class="welcome-section">
+
+        <h2 id="welcomeUser">
+            Welcome
+        </h2>
+
+    </div>
+
+    <button id="logoutBtn">
+
+        Logout
+
+    </button>
+
+</header>
+
+<!-- =========================
+     LOADER
+========================== -->
+
+<div
+class="loader-overlay"
+id="loaderOverlay">
+
+    <div class="loader"></div>
+
+    <p>Loading hospital directory...</p>
+
+</div>
+
+<!-- =========================
+     TOP HEADER
+========================== -->
+
+<header class="topbar">
+
+    <div class="brand-container">
+
+        <div class="logo-mark">
+            M
+        </div>
+
+        <div>
+
+            <p class="brand-name">
+                MediGuide
+            </p>
+
+            <p class="brand-tagline">
+                Healthcare navigation made simple
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="search-panel">
+
+        <div class="search-field">
+
+            <input
+                id="searchInputSection"
+                type="search"
+                placeholder="Search symptom (Back Pain, Fever, Knee Pain...)"
+                autocomplete="off">
+
+            <button
+                id="searchButtonSection"
+                class="primary-btn">
+
+                🔍 Search
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <button
+        id="themeBtn"
+        class="mode-toggle">
+
+        🌙
+
+    </button>
+
+    <div class="theme-container">
+
+        <div
+            id="themeMenu"
+            class="theme-menu">
+
+            <button onclick="setTheme('light')">
+                ☀️ Light
+            </button>
+
+            <button onclick="setTheme('dark')">
+                🌙 Dark
+            </button>
+
+            <button onclick="setTheme('system')">
+                💻 Default
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+<main>
+<section class="results-section" id="results-section">
+
+<div class="results-header">
+
+<p class="eyebrow">
+
+Search Results
+
+</p>
+
+<h2 id="resultTitle">
+
+Recommended Specialists & Nearby Hospitals
+
+</h2>
+
+<p id="resultSubtitle">
+
+Search a symptom to begin.
+
+</p>
+
+</div>
+
+<div class="result-actions">
+
+<button
+id="clearFilters"
+class="secondary-btn">
+
+Clear Filters
+
+</button>
+
+<button
+id="openFilters"
+class="secondary-btn">
+
+Filters
+
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================
+     FILTERS
+========================== -->
+
+<aside
+class="filters-panel"
+id="filterPanel">
+
+<h3>
+
+Hospital Filters
+
+</h3>
+
+<div class="filter-group">
+
+<label>
+
+City
+
+</label>
+
+<select id="cityFilter">
+
+<option value="all">
+
+All Cities
+
+</option>
+
+</select>
+
+</div>
+
+<div class="filter-group">
+
+<label>
+
+Minimum Rating
+
+</label>
+
+<select id="ratingFilter">
+
+<option value="0">
+
+All Ratings
+
+</option>
+
+<option value="4.5">
+
+4.5+
+
+</option>
+
+<option value="4">
+
+4.0+
+
+</option>
+
+<option value="3.5">
+
+3.5+
+
+</option>
+
+</select>
+
+</div>
+
+<div class="filter-group">
+
+<p>
+
+Hospital Type
+
+</p>
+
+<label>
+
+<input
+type="checkbox"
+class="hospital-type"
+value="Government"
+checked>
+
+Government
+
+</label>
+
+<label>
+
+<input
+type="checkbox"
+class="hospital-type"
+value="Private"
+checked>
+
+Private
+
+</label>
+
+<label>
+
+<input
+type="checkbox"
+class="hospital-type"
+value="Multi Specialty"
+checked>
+
+Multi Specialty
+
+</label>
+
+</div>
+
+<div class="filter-group">
+
+<label>
+
+<input
+id="emergencyFilter"
+type="checkbox">
+
+Emergency Available
+
+</label>
+
+<label>
+
+<input
+id="openNowFilter"
+type="checkbox">
+
+Open Now
+
+</label>
+
+</div>
+
+</aside>
+
+<!-- =========================
+     SPECIALISTS
+========================== -->
+
+<div
+id="specialistPanel"
+class="specialists-card">
+
+</div>
+
+<!-- =========================
+     HOSPITAL CARDS
+========================== -->
+
+<div
+id="hospitalCards"
+class="hospital-grid">
+
+</div>
+
+<div
+id="noResults"
+class="no-results hidden">
+
+</div>
+
+</section>
+
+<section
+class="hero"
+id="home">
+
+<div class="hero-copy">
+
+<p class="eyebrow">
+
+Trusted Healthcare Guidance
+
+</p>
+
+<h1>
+
+Find the right doctor and nearby hospitals for your symptoms.
+
+</h1>
+
+<p>
+
+Search symptoms, get specialist recommendations, explore nearby hospitals and save hospitals you trust.
+
+</p>
+
+</div>
+
+<div
+class="hero-media">
+
+<div
+class="hero-card">
+
+<h2>
+
+24/7 Access to Care
+
+</h2>
+
+<p>
+
+Find hospitals, specialists and emergency services across multiple cities.
+
+</p>
+
+<div
+class="hero-stats">
+
+<div>
+
+<span>40+</span>
+
+<small>Hospitals</small>
+
+</div>
+
+<div>
+
+<span>12</span>
+
+<small>Specialities</small>
+
+</div>
+
+<div>
+
+<span>100%</span>
+
+<small>Verified</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- =========================
+     POPULAR SYMPTOMS
+========================== -->
+
+<section class="symptoms" id="symptoms-section">
+
+    <div class="section-heading">
+
+        <h2>Popular Symptoms</h2>
+
+        <p>
+            Tap a symptom to quickly find the right specialist and nearby hospitals.
+        </p>
+
+    </div>
+
+    <div class="symptom-grid" id="popularSymptoms">
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RECENT SEARCHS & FAVORITES
+========================== -->
+
+<section class="status-panel">
+
+    <div class="status-card">
+
+        <h3>Recent Searches</h3>
+
+        <div id="searchHistory"
+             class="history-list">
+
+        </div>
+
+    </div>
+
+    <div class="status-card">
+
+        <h3>Saved Hospitals</h3>
+
+        <div id="favoriteList"
+             class="history-list">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RESULTS
+========================== -->
+
+
+<!-- =========================
+     ABOUT
+========================== -->
+
+<section class="about" id="about-section">
+
+    <div class="section-heading">
+
+        <h2>Why Choose MediGuide?</h2>
+
+        <p>
+            Fast, secure and reliable healthcare guidance whenever you need it.
+        </p>
+
+    </div>
+
+    <div class="about-grid">
+
+        <article>
+
+            <h3>🏥 Expert Recommendations</h3>
+
+            <p>
+                Get specialist recommendations based on your symptoms.
+            </p>
+
+        </article>
+
+        <article>
+
+            <h3>📍 Nearby Hospitals</h3>
+
+            <p>
+                Discover trusted hospitals with ratings, emergency services and contact details.
+            </p>
+
+        </article>
+
+        <article>
+
+            <h3>⚡ Smart Filters</h3>
+
+            <p>
+                Filter hospitals by city, rating and emergency availability.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer id="footer">
+
+<div class="footer-grid">
+
+<div>
+
+<h3>MediGuide</h3>
+
+<p>
+
+Helping people find the right healthcare quickly and easily.
+
+</p>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="#home">Home</a></li>
+
+<li><a href="#symptoms-section">Symptoms</a></li>
+
+<li><a href="#results-section">Hospitals</a></li>
+
+<li><a href="#about-section">About</a></li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3>Emergency</h3>
+
+<p>📞 108</p>
+
+<p>📞 102 Ambulance</p>
+
+</div>
+
+<div>
+
+<h3>Contact</h3>
+
+<p>📧 support@mediguide.com</p>
+
+<p>🌐 www.mediguide.com</p>
+
+</div>
+
+</div>
+
+<p class="footer-copy">
+
+© 2026 MediGuide. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<!-- =========================
+     BACK TO TOP
+========================== -->
+
+<button
+id="backToTop"
+class="back-to-top">
+
+↑
+
+</button>
+
+<!-- =========================
+     DETAILS MODAL
+========================== -->
+
+<div
+id="detailsModal"
+class="modal-overlay hidden">
+
+<div class="modal-content">
+
+<button
+id="modalClose"
+class="modal-close">
+
+×
+
+</button>
+
+<div id="modalBody">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script type="module" src="script.js"></script>
+
+<script>
+
+const user = JSON.parse(localStorage.getItem("mediguideUser"));
+
+if(user){
+
+    document.getElementById("welcomeUser").innerHTML =
+        "Welcome, " + user.name;
+
+}
+
+// Redirect to login if not logged in
+if(localStorage.getItem("loggedIn")!=="true"){
+
+    window.location.replace("login.html");
+
+}
+
+// Logout
+document.getElementById("logoutBtn")
+.addEventListener("click",()=>{
+
+    localStorage.removeItem("loggedIn");
+
+    window.location.replace("login.html");
+
+});
+
+</script>
+</body>
+
+</html>
